@@ -9,6 +9,8 @@ public class FalPlantScript : MonoBehaviour
     int life = 100;
     string state = "Rest";
     float speed = 25;
+    float speedb = 35;
+    float speedc = 50;
     Rigidbody2D plantRB;
     public Transform target;
     float distanceToStop = 0;
@@ -44,12 +46,12 @@ public class FalPlantScript : MonoBehaviour
         }
         if (state == "Attack")
         {
-            Vector2 newPosition = Vector2.MoveTowards(transform.position, objectivePos, Time.deltaTime * speed);
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, objectivePos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
         }
         else if (state == "Return")
         {
-            Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speed);
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
         }
     }
@@ -70,5 +72,40 @@ public class FalPlantScript : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         colorChange.color = origColor;
         StartCoroutine("EnemyAttack");
+    }
+
+    IEnumerator EnemyAttackBerserk1()
+    {
+        state = "CheckPos";
+        yield return new WaitForSeconds(2f);
+        state = "Alert";
+        for (int i = 0; i < 5; i++)
+        {
+            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            yield return new WaitForSeconds(0.15f);
+        }
+        state = "Attack";
+        yield return new WaitForSeconds(2);
+        state = "Return";
+        yield return new WaitForSeconds(1f);
+        colorChange.color = origColor;
+        StartCoroutine("EnemyAttackBerserk1");
+    }
+    IEnumerator EnemyAttackBerserk2()
+    {
+        state = "CheckPos";
+        yield return new WaitForSeconds(1f);
+        state = "Alert";
+        for (int i = 0; i < 5; i++)
+        {
+            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        state = "Attack";
+        yield return new WaitForSeconds(1.5f);
+        state = "Return";
+        yield return new WaitForSeconds(0.75f);
+        colorChange.color = origColor;
+        StartCoroutine("EnemyAttackBerserk2");
     }
 }
