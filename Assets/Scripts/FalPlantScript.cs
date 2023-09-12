@@ -8,42 +8,67 @@ public class FalPlantScript : MonoBehaviour
 {
     int life = 100;
     string state = "Rest";
-    float speed = 300;
+    float speed = 25;
     Rigidbody2D plantRB;
     public Transform target;
     float distanceToStop = 0;
+    Vector2 origPos;
+    Vector2 objectivePos;
+    SpriteRenderer colorChange;
+    Color origColor;
     // Start is called before the first frame update
     void Start()
     {
         plantRB = GetComponent<Rigidbody2D>();
+        colorChange = GetComponent<SpriteRenderer>();
+        StartCoroutine("EnemyAttack");
+        origPos = transform.position;
+        origColor = colorChange.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (state == "Rest")
+        if (state == "CheckPos")
         {
-            //StartCoroutine(EnemyAttack());
-            state = "Awaken";
+            Quaternion rotation = Quaternion.LookRotation(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
+            transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
         }
     }
 
     private void FixedUpdate()
     {
-        
+        if (state == "CheckPos")
+        {
+            objectivePos = target.transform.position;
+        }
+        if (state == "Attack")
+        {
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, objectivePos, Time.deltaTime * speed);
+            plantRB.MovePosition(newPosition);
+        }
+        else if (state == "Return")
+        {
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speed);
+            plantRB.MovePosition(newPosition);
+        }
     }
 
     IEnumerator EnemyAttack()
     {
-        while (life > 0)
+        state = "CheckPos";
+        yield return new WaitForSeconds(3);
+        state = "Alert";
+        for (int i = 0; i < 5; i++)
         {
-            while (Vector3.Distance(transform.position, target.position) > distanceToStop)
-            {
-                Debug.Log("Ta lejos");
-                transform.LookAt(target);
-                plantRB.AddRelativeForce(Vector3.forward * speed, ForceMode2D.Force);
-            }
-            yield return new WaitForSeconds(3);
+            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            yield return new WaitForSeconds(0.2f);
         }
+        state = "Attack";
+        yield return new WaitForSeconds(3);
+        state = "Return";
+        yield return new WaitForSeconds(1.5f);
+        colorChange.color = origColor;
+        StartCoroutine("EnemyAttack");
     }
 }
