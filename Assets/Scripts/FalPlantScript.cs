@@ -6,16 +6,20 @@ using static UnityEngine.GraphicsBuffer;
 [RequireComponent(typeof(Rigidbody2D))]
 public class FalPlantScript : MonoBehaviour
 {
-    int life = 100;
+    [Header ("Plant Attributes")]
+    [SerializeField] int life = 100;
     string state = "Rest";
+    int phase = 1;
+    Vector2 origPos;
+    [Header("Plant Attack Settings")]
     float speed = 25;
     float speedb = 35;
     float speedc = 50;
-    Rigidbody2D plantRB;
-    public Transform target;
     float distanceToStop = 0;
-    Vector2 origPos;
+    public Transform target;
     Vector2 objectivePos;
+    [Header("Plant Components")]
+    Rigidbody2D plantRB;
     SpriteRenderer colorChange;
     Color origColor;
     // Start is called before the first frame update
@@ -24,6 +28,7 @@ public class FalPlantScript : MonoBehaviour
         plantRB = GetComponent<Rigidbody2D>();
         colorChange = GetComponent<SpriteRenderer>();
         StartCoroutine("EnemyAttack");
+        StartCoroutine("PhaseCheck");
         origPos = transform.position;
         origColor = colorChange.color;
     }
@@ -36,6 +41,7 @@ public class FalPlantScript : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
             transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
         }
+        
     }
 
     private void FixedUpdate()
@@ -51,11 +57,36 @@ public class FalPlantScript : MonoBehaviour
         }
         else if (state == "Return")
         {
+            colorChange.color = origColor;
             Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            life = life - 10;
+        }
     }
-
+    IEnumerator PhaseCheck()
+    {
+        if (life <= 50 && life >= 26 && phase == 1)
+        {
+            StopCoroutine("EnemyAttack");
+            state = "Return";
+            yield return new WaitForSeconds(1);
+            StartCoroutine("EnemyAttackBerserk1");
+            phase = 2;
+        }
+        if (life <= 25 && life >= 1 && phase == 2)
+        {
+            StopCoroutine("EnemyAttackBerserk1");
+            state = "Return";
+            yield return new WaitForSeconds(1);
+            StartCoroutine("EnemyAttackBerserk2");
+            phase = 3;
+        }
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine("PhaseCheck");
+    }
     IEnumerator EnemyAttack()
     {
         state = "CheckPos";
@@ -70,7 +101,6 @@ public class FalPlantScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         state = "Return";
         yield return new WaitForSeconds(1.5f);
-        colorChange.color = origColor;
         StartCoroutine("EnemyAttack");
     }
 
@@ -88,7 +118,6 @@ public class FalPlantScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         state = "Return";
         yield return new WaitForSeconds(1f);
-        colorChange.color = origColor;
         StartCoroutine("EnemyAttackBerserk1");
     }
     IEnumerator EnemyAttackBerserk2()
@@ -105,7 +134,6 @@ public class FalPlantScript : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         state = "Return";
         yield return new WaitForSeconds(0.75f);
-        colorChange.color = origColor;
         StartCoroutine("EnemyAttackBerserk2");
     }
 }
