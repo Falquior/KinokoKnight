@@ -23,7 +23,7 @@ public class FalBullSpawnScript : MonoBehaviour
     private void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (spawnerType == SpawnerType.Spin) transform.eulerAngles = new Vector3(0f, 0f, -90 + transform.eulerAngles.z + 1f);
+        if (spawnerType == SpawnerType.Spin) transform.rotation = Quaternion.Euler(0f, 0f, -90 + 500 * Time.time);
         if (spawnerType == SpawnerType.Hose) transform.rotation = Quaternion.Euler(0f, 0f, -90 + 50 * Mathf.Sin(Time.time * 10));
         if (timer >= firingRate)
         {
@@ -51,7 +51,7 @@ public class FalBullSpawnScript : MonoBehaviour
         yield return new WaitForSeconds (3);
         bulletLife = 0;
         speed = 0;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         speed = 10;
         bulletLife = 3;
         transform.rotation = origRot;
@@ -59,7 +59,7 @@ public class FalBullSpawnScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         bulletLife = 0;
         speed = 0;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         speed = 10;
         bulletLife = 3;
         transform.rotation = origRot;
@@ -67,7 +67,7 @@ public class FalBullSpawnScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         bulletLife = 0;
         speed = 0;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         StartCoroutine("BulletSet");
     }
 }

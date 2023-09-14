@@ -10,10 +10,14 @@ public class FalCharCon : MonoBehaviour
     bool dashActive = true;
 
     Rigidbody2D charRB;
+    SpriteRenderer colorChange;
+    Color origColor;
     // Start is called before the first frame update
     void Start()
     {
         charRB = GetComponent<Rigidbody2D>();
+        colorChange = GetComponent<SpriteRenderer>();
+        origColor = colorChange.color;
     }
 
     // Update is called once per frame
@@ -37,9 +41,11 @@ public class FalCharCon : MonoBehaviour
     {
         dashActive = false;
         speed = 700;
+        colorChange.color = new Color(origColor.r, origColor.g, origColor.b, 0.5f) ;
         yield return new WaitForSeconds(2);
         speed = 500;
-        yield return new WaitForSeconds(10);
+        colorChange.color = origColor;
+        yield return new WaitForSeconds(5);
         dashActive = true;
     }
 }
