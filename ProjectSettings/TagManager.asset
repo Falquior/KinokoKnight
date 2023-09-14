@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - MainEnemy
+  - EnemyParts
+
   - Sword
   - Arrow
+
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Scenario
+  - Enemies
+  - Characters
   - 
   - 
   - 
