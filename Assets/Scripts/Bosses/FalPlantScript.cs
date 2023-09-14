@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class FalPlantScript : MonoBehaviour
 {
     [Header ("Plant Attributes")]
-    [SerializeField] int life = 100;
+    [SerializeField] public int life = 100;
     string state = "Rest";
     int phase = 1;
     Vector2 origPos;

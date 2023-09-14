@@ -6,10 +6,9 @@ TagManager:
   tags:
   - MainEnemy
   - EnemyParts
-
-  - Sword
   - Arrow
-
+  - Sword
+  - PlantBoss
   layers:
   - Default
   - TransparentFX
@@ -17,9 +16,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Scenario
-  - Enemies
-  - Characters
+  - 
+  - 
+  - 
   - 
   - 
   - 

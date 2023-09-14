@@ -6,10 +6,16 @@ using UnityEngine.UI;
 public class HealthSlider : MonoBehaviour
 {
     private Slider slider;
+    FalPlantScript plantData;
 
     public void Start()
     {
         slider = GetComponent<Slider>();     
+        plantData = FindAnyObjectByType<FalPlantScript>();
+    }
+    private void Update()
+    {
+        SetHealth(plantData.life);
     }
 
     public void SetMaxHealth(int maxHealth)
