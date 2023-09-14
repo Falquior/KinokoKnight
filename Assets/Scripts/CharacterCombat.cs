@@ -18,6 +18,8 @@ public class CharacterCombat : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
             PerformMeleeAttack();
+        else if(Input.GetKeyDown(KeyCode.Mouse1))
+            PerformDistanceAttack();
 
         pointerInput = GetMousePosition();
         swordContainer.pointerPosition = pointerInput;
@@ -34,6 +36,20 @@ public class CharacterCombat : MonoBehaviour
     private void PerformMeleeAttack()
     {
         if (swordContainer != null)
+        {
+            swordContainer.SetSwordVisibility(true);
+            swordContainer.SetCrossbowVisibility(false);
             swordContainer.Attack();
+        }
+    }
+
+    private void PerformDistanceAttack()
+    {
+        if(swordContainer != null)
+        {
+            swordContainer.SetCrossbowVisibility(true);
+            swordContainer.SetSwordVisibility(false);
+            swordContainer.DistanceAttack();
+        }
     }
 }

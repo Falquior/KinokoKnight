@@ -27,4 +27,6 @@ public class CharacterMovement : MonoBehaviour
         // Moves the character
         rb.velocity = moveInput * moveSpeed * Time.fixedDeltaTime;
     }
+
+
 }

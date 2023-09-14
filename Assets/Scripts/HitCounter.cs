@@ -10,9 +10,14 @@ public class HitCounter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Sword"))
-        {
-            hits++;
-            Debug.Log("Hit counter attacked, hits: " + hits.ToString());
-        }
+            Count();
+        else if(collision.CompareTag("Arrow"))
+            Count();
+    }
+
+    private void Count()
+    {
+        hits++;
+        Debug.Log("Hit counter attacked, hits: " + hits.ToString());
     }
 }
