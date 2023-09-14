@@ -9,6 +9,7 @@ TagManager:
   - Arrow
   - Sword
   - PlantBoss
+  - Enemy
   layers:
   - Default
   - TransparentFX

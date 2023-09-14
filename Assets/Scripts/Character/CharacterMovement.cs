@@ -20,9 +20,24 @@ public class CharacterMovement : MonoBehaviour
     [Tooltip("Cooldown in seconds of the dash.")]
     [SerializeField] private float dashCooldown = 10.0f;
 
+    PlayersLife lifeControl;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        lifeControl = FindAnyObjectByType<PlayersLife>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        lifeControl.numLifes = lifeControl.lifes.Length;
+
+        //Check for a match with the specific tag on any GameObject that collides with your GameObject
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
+        {
+            lifeControl.hits++;
+            lifeControl.DeActivatedOneLife(lifeControl.numLifes, lifeControl.hits);
+        }
     }
 
     private void Update()

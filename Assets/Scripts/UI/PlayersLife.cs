@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayersLife : MonoBehaviour
 {
     private UIFuntions UIFuntions;
-    [SerializeField] GameObject[] lifes;
-    private int numLifes;
-    private int hits = 0;
+    [SerializeField] public GameObject[] lifes;
+    public int numLifes;
+    public int hits = 0;
     
     // Make all life sprites visible.
     public void ActivateLifes()
@@ -32,16 +32,9 @@ public class PlayersLife : MonoBehaviour
     }
 
     // Detect collisions between the GameObjects with Colliders attached
-    void OnCollisionEnter(Collision collision)
+    void EnemyHit(Collision collision)
     {
-        numLifes = lifes.Length;
-
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            hits++;
-            DeActivatedOneLife(numLifes,hits);
-        }
+        
     }
 
 }
