@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIFuntions : MonoBehaviour
 {
-    SoundManager soundManager;
-
     [Header("String Variables")]
     /// <summary>
     /// Write the name the scene that you want to load
@@ -18,5 +17,7 @@ public class UIFuntions : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    // METHOD TO PAUSE GAME
 
+    // METHOD TO ACTIVATED PAUSE MENU
 }
