@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CharacterCombat : MonoBehaviour
 {
-    [SerializeField] private SwordContainer swordContainer;
+    [SerializeField] private WeaponsContainer weaponsContainer;
 
     private Vector2 pointerInput;
 
     private void Awake()
     {
-        swordContainer = GetComponentInChildren<SwordContainer>();
+        weaponsContainer = GetComponentInChildren<WeaponsContainer>();
     }
 
     private void Update()
@@ -22,7 +22,7 @@ public class CharacterCombat : MonoBehaviour
             PerformDistanceAttack();
 
         pointerInput = GetMousePosition();
-        swordContainer.pointerPosition = pointerInput;
+        weaponsContainer.pointerPosition = pointerInput;
     }
 
     private Vector2 GetMousePosition()
@@ -35,21 +35,21 @@ public class CharacterCombat : MonoBehaviour
 
     private void PerformMeleeAttack()
     {
-        if (swordContainer != null)
+        if (weaponsContainer != null)
         {
-            swordContainer.SetSwordVisibility(true);
-            swordContainer.SetCrossbowVisibility(false);
-            swordContainer.Attack();
+            weaponsContainer.SetSwordVisibility(true);
+            weaponsContainer.SetCrossbowVisibility(false);
+            weaponsContainer.Attack();
         }
     }
 
     private void PerformDistanceAttack()
     {
-        if(swordContainer != null)
+        if(weaponsContainer != null)
         {
-            swordContainer.SetCrossbowVisibility(true);
-            swordContainer.SetSwordVisibility(false);
-            swordContainer.DistanceAttack();
+            weaponsContainer.SetCrossbowVisibility(true);
+            weaponsContainer.SetSwordVisibility(false);
+            weaponsContainer.DistanceAttack();
         }
     }
 }
