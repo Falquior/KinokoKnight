@@ -24,9 +24,9 @@ public class HealthSlider : MonoBehaviour
 
     // Call this method in Boss script inserting health / LIFE argument.
     // In Start and update? Maybe calling them individualy insted of using this method. As you wish.
-    public void InitializeHealth(int health)
+    public void InitializeHealth(int health, int maxHealth)
     {
-        SetMaxHealth(health);
+        SetMaxHealth(maxHealth);
         SetHealth(health);
     }
 

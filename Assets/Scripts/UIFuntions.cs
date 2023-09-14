@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +13,39 @@ public class UIFuntions : MonoBehaviour
     /// </summary>
     [SerializeField] string sceneName;
 
+    [SerializeField] GameObject pauseMenu;
+    public static bool GameIsPause = false; 
+
     public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    // METHOD TO PAUSE GAME
+    // Pause game
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPause)
+            {
+                Continue();
+            } else
+            {
+                Pause();
+            }
+        }
+    }
 
-    // METHOD TO ACTIVATED PAUSE MENU
+    public void Continue()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPause = false;
+    } 
+    void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPause = true;
+    }
 }

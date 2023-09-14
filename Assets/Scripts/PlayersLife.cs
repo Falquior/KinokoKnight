@@ -22,7 +22,12 @@ public class PlayersLife : MonoBehaviour
     {
         lifes[hits-1].SetActive(false);
         if (numLife == hits) {
-        // METHOD FROM UIFuntions to activated GameOver Menu and pause game
+
+        //
+        // METHOD FROM UIFuntions to activated GameOver Menu and pause game.
+        // CHARACTER DEATH ANIMATION
+        //
+
         }
     }
 
