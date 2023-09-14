@@ -21,23 +21,37 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float dashCooldown = 10.0f;
 
     PlayersLife lifeControl;
+    CapsuleCollider2D charCollider;
+    bool isGettingHit = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        charCollider = GetComponent<CapsuleCollider2D>();
         lifeControl = FindAnyObjectByType<PlayersLife>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        lifeControl.numLifes = lifeControl.lifes.Length;
-
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
+        if (isGettingHit == false)
         {
-            lifeControl.hits++;
-            lifeControl.DeActivatedOneLife(lifeControl.numLifes, lifeControl.hits);
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
+            {
+                StartCoroutine("Hits");
+            }
+
         }
+        
+    }
+
+    IEnumerator Hits()
+    {
+        isGettingHit = true;
+        lifeControl.numLifes = lifeControl.lifes.Length;
+        lifeControl.hits++;
+        lifeControl.DeActivatedOneLife(lifeControl.numLifes, lifeControl.hits);
+        yield return new WaitForSeconds(3);
+        isGettingHit = false;
     }
 
     private void Update()
