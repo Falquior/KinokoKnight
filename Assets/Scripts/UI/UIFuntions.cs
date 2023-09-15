@@ -25,6 +25,7 @@ public class UIFuntions : MonoBehaviour
     }
     public void ChangeScene()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 
@@ -35,12 +36,10 @@ public class UIFuntions : MonoBehaviour
         {
             if (GameIsPause)
             {
-                charActive.swordActive = true;
                 Continue();
             }
             else
             {
-                charActive.swordActive = false;
                 Pause();
             }
         }
@@ -48,12 +47,14 @@ public class UIFuntions : MonoBehaviour
 
     public void Continue()
     {
+        charActive.swordActive = true;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPause = false;
     } 
     void Pause()
     {
+        charActive.swordActive = false;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         GameIsPause = true;
