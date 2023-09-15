@@ -14,8 +14,15 @@ public class UIFuntions : MonoBehaviour
     [SerializeField] string sceneName;
 
     [SerializeField] GameObject pauseMenu;
-    public static bool GameIsPause = false; 
+    public static bool GameIsPause = false;
 
+    CharacterCombat charActive;
+
+
+    private void Start()
+    {
+        charActive = FindAnyObjectByType<CharacterCombat>();
+    }
     public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
@@ -28,9 +35,12 @@ public class UIFuntions : MonoBehaviour
         {
             if (GameIsPause)
             {
+                charActive.swordActive = true;
                 Continue();
-            } else
+            }
+            else
             {
+                charActive.swordActive = false;
                 Pause();
             }
         }

@@ -9,6 +9,8 @@ public class CharacterCombat : MonoBehaviour
 
     private Vector2 pointerInput;
 
+    public bool swordActive = true;
+
     private void Awake()
     {
         weaponsContainer = GetComponentInChildren<WeaponsContainer>();
@@ -16,13 +18,16 @@ public class CharacterCombat : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && swordActive)
             PerformMeleeAttack();
         else if(Input.GetKeyDown(KeyCode.Mouse1))
             PerformDistanceAttack();
-
-        pointerInput = GetMousePosition();
-        weaponsContainer.pointerPosition = pointerInput;
+        if (swordActive)
+        {
+            pointerInput = GetMousePosition();
+            weaponsContainer.pointerPosition = pointerInput;
+        }
+        
     }
 
     private Vector2 GetMousePosition()
