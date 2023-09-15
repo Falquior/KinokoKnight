@@ -264,6 +264,8 @@ MonoBehaviour:
   - {fileID: 7146872325343197310}
   - {fileID: 5622507275681790928}
   - {fileID: 7209843895631672410}
+  numLifes: 0
+  hits: 0
 --- !u!1 &1188147711298586035
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,18 +5538,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4024779393302702483, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024779393302702483, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6220745604911913561, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_SortingLayer
-      value: 32709
-      objectReference: {fileID: 0}
     - target: {fileID: 6814657695763338598, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
       propertyPath: m_Name
       value: UILifePoint
@@ -5654,34 +5644,6 @@ PrefabInstance:
     - target: {fileID: 290798405966155354, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 319789717533125665, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 319789717533125665, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 319789717533125665, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 319789717533125665, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024779393302702483, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024779393302702483, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6220745604911913561, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
-      propertyPath: m_SortingLayer
-      value: 32709
       objectReference: {fileID: 0}
     - target: {fileID: 6814657695763338598, guid: 608dc2011981f3b488c4b4e9a2d0204a, type: 3}
       propertyPath: m_Name

@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 602308354123524575}
   - component: {fileID: 2604406625497089439}
   - component: {fileID: 2684917714539228553}
+  - component: {fileID: 5135642354948486467}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Sword
@@ -128,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 3694978261749229139}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.3585216, w: 0.93352145}
-  m_LocalPosition: {x: 0.84, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0.38, y: 0.81, z: 0}
   m_LocalScale: {x: 2.604244, y: 2.382007, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,8 +176,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fafeed63be1067145bfddaab0d27183c, type: 3}
-  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  m_Sprite: {fileID: 947899799, guid: 275235e43becbeb439f382855ea3b2aa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,18 +240,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2974825, y: 0.36670354}
+  m_Offset: {x: -0.17417526, y: -0.78959846}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.3589589, y: 0.24529023}
-    oldSize: {x: 0.92, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20162597, y: 0.28400213}
+  m_Size: {x: 1.6752717, y: 0.74242353}
   m_EdgeRadius: 0
 --- !u!114 &2684917714539228553
 MonoBehaviour:
@@ -264,6 +265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1ccd487ec815345a437b7a96904286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &5135642354948486467
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3694978261749229139}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_SortAtRoot: 0
 --- !u!1 &3895656667691906344
 GameObject:
   m_ObjectHideFlags: 0

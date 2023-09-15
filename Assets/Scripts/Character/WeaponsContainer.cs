@@ -9,7 +9,7 @@ public class WeaponsContainer : MonoBehaviour
     [SerializeField] private Animator swordAnimator;
 
     [Tooltip("Cooldown for melee attacks of the character.")]
-    [SerializeField] private float meleeDelay = 0.3f;
+    [SerializeField] private float meleeDelay = 0.5f;
     [Tooltip("Cooldown for distance attacks of the character.")]
     [SerializeField] private float distanceDelay = 1.0f;
     [Tooltip("Arrows reload time")]

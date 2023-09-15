@@ -21,25 +21,32 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float dashCooldown = 10.0f;
 
     PlayersLife lifeControl;
-    CapsuleCollider2D charCollider;
+    bool charDamagable;
     bool isGettingHit = false;
+    SpriteRenderer colorChange;
+    Color origColor;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        charCollider = GetComponent<CapsuleCollider2D>();
         lifeControl = FindAnyObjectByType<PlayersLife>();
+        colorChange = GetComponent<SpriteRenderer>();
+        origColor = colorChange.color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isGettingHit == false)
         {
-            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
-            {
-                StartCoroutine("Hits");
+            if(collision.GetType() == typeof(CapsuleCollider2D)){
+                if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
+                {
+                    if (charDamagable)
+                    {
+                        StartCoroutine("Hits");
+                    }
+                }
             }
-
         }
         
     }
@@ -72,11 +79,19 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Moves the character
-        if(!activeDash)
+        if (!activeDash)
+        {
             rb.velocity = moveInput * moveSpeed * Time.fixedDeltaTime;
-        else
-            rb.velocity = moveInput * dashSpeed * Time.fixedDeltaTime;
+            colorChange.color = origColor;
+            charDamagable = true;
+        }
 
+        else
+        {
+            rb.velocity = moveInput * dashSpeed * Time.fixedDeltaTime;
+            colorChange.color = new Color(origColor.r, origColor.g, origColor.b, 0.5f);
+            charDamagable = false;
+        }
     }
 
     private IEnumerator Dash()

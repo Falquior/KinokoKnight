@@ -18,7 +18,7 @@ public class SwordCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlantBoss"))
         {
-            plantData.life -= 5;
+            plantData.life -= 1;
         }
     }
 
