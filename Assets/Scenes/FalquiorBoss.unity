@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483407509984465289, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 879d56cb00086c643b43890ac82ff4ce, type: 3}
+    - target: {fileID: 1483407509984465289, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2302479060364574043, guid: a0030a1defb34a5499917961720f1493, type: 3}
       propertyPath: m_Name
       value: Combat UI
@@ -233,6 +241,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6773775970766842261, guid: a0030a1defb34a5499917961720f1493, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521277550596009540, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -86.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521277550596009540, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
