@@ -40,7 +40,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (isGettingHit == false)
         {
-            if(collision.GetType() == typeof(CapsuleCollider2D)){
+            if(collision.GetType() == typeof(CapsuleCollider2D))
+            {
                 if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
                 {
                     if (charDamagable)
@@ -78,7 +79,6 @@ public class CharacterMovement : MonoBehaviour
         }
         //Animation
         Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Debug.Log(mousepos);
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             anim.SetBool("IsWalk", true);
