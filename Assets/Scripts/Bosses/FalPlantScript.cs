@@ -22,11 +22,13 @@ public class FalPlantScript : MonoBehaviour
     Rigidbody2D plantRB;
     SpriteRenderer colorChange;
     Color origColor;
+    Animator plantAnim;
     // Start is called before the first frame update
     void Start()
     {
         plantRB = GetComponent<Rigidbody2D>();
         colorChange = GetComponent<SpriteRenderer>();
+        plantAnim = GetComponent<Animator>();
         StartCoroutine("EnemyAttack");
         StartCoroutine("PhaseCheck");
         origPos = transform.position;
@@ -90,14 +92,17 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttack()
     {
         state = "CheckPos";
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(3);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            //colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.2f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(3);
         state = "Return";
         yield return new WaitForSeconds(1.5f);
