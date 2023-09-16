@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class CharacterMovement : MonoBehaviour
     Color origColor;
     Animator anim;
 
+    CinemachineVirtualCamera vcam;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,6 +38,7 @@ public class CharacterMovement : MonoBehaviour
         colorChange = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         origColor = colorChange.color;
+        vcam =  FindAnyObjectByType<CinemachineVirtualCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -89,6 +94,10 @@ public class CharacterMovement : MonoBehaviour
         }
         anim.SetFloat("InputX", mousepos.x);
         anim.SetFloat("InputY", mousepos.y);
+
+        Vector2 mouse2norm = mousepos.normalized;
+        vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f + mouse2norm.x * -0.2f;
+        vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.5f + mouse2norm.y * 0.2f;
     }
 
     private void FixedUpdate()
