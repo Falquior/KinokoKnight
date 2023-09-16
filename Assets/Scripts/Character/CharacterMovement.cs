@@ -98,6 +98,8 @@ public class CharacterMovement : MonoBehaviour
         Vector2 mouse2norm = mousepos.normalized;
         vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f + mouse2norm.x * -0.2f;
         vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.5f + mouse2norm.y * 0.2f;
+        if(isGettingHit) colorChange.color = new Color( 100 , 0, 0, 0.5f);
+        else if (!activeDash) colorChange.color = origColor;
     }
 
     private void FixedUpdate()

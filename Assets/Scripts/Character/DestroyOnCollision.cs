@@ -13,7 +13,7 @@ public class DestroyOnCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlantBoss"))
         {
-            plantData.life -= 3;
+            plantData.life -= 1.5f;
         }
         // Destroys if collides with a gameObject that is not an arrow
         if (!collision.gameObject.CompareTag("Arrow"))

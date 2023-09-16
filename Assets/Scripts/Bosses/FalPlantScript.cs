@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class FalPlantScript : MonoBehaviour
 {
     [Header ("Plant Attributes")]
-    [SerializeField] public int life = 100;
+    [SerializeField] public float life = 100;
     string state = "Rest";
     int phase = 1;
     Vector2 origPos;
@@ -62,10 +62,6 @@ public class FalPlantScript : MonoBehaviour
             colorChange.color = origColor;
             Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            life = life - 10;
         }
     }
     IEnumerator PhaseCheck()
