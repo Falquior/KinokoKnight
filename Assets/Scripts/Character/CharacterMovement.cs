@@ -16,9 +16,9 @@ public class CharacterMovement : MonoBehaviour
     [Tooltip("Speed of the character when the dash is used.")]
     [SerializeField] private float dashSpeed = 1000.0f;
     [Tooltip("Duration in seconds of the dash.")]
-    [SerializeField] private float dashDuration = 2.0f;
+    [SerializeField] private float dashDuration = 1.0f;
     [Tooltip("Cooldown in seconds of the dash.")]
-    [SerializeField] private float dashCooldown = 10.0f;
+    [SerializeField] private float dashCooldown = 3f;
 
     PlayersLife lifeControl;
     bool charDamagable;
