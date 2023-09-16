@@ -92,6 +92,7 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttack()
     {
         state = "CheckPos";
+        plantAnim.speed = 2f;
         plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(3);
         state = "Alert";
@@ -112,14 +113,17 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttackBerserk1()
     {
         state = "CheckPos";
+        plantAnim.speed = 4f;
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(2f);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.15f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(2);
         state = "Return";
         yield return new WaitForSeconds(1f);
@@ -128,14 +132,17 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttackBerserk2()
     {
         state = "CheckPos";
+        plantAnim.speed = 6;
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(1f);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.1f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(1.5f);
         state = "Return";
         yield return new WaitForSeconds(0.75f);
