@@ -47,6 +47,7 @@ public class FalBullSpawnScript : MonoBehaviour
         speed = 10;
         bulletLife = 3;
         transform.rotation = origRot;
+        firingRate = firingRate * 5;
         spawnerType = SpawnerType.Straight;
         yield return new WaitForSeconds (3);
         bulletLife = 0;
@@ -55,6 +56,7 @@ public class FalBullSpawnScript : MonoBehaviour
         speed = 10;
         bulletLife = 3;
         transform.rotation = origRot;
+        firingRate = firingRate / 5;
         spawnerType = SpawnerType.Spin;
         yield return new WaitForSeconds(3);
         bulletLife = 0;
