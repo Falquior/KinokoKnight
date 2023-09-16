@@ -25,12 +25,14 @@ public class CharacterMovement : MonoBehaviour
     bool isGettingHit = false;
     SpriteRenderer colorChange;
     Color origColor;
+    Animator anim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         lifeControl = FindAnyObjectByType<PlayersLife>();
         colorChange = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         origColor = colorChange.color;
     }
 
@@ -74,6 +76,19 @@ public class CharacterMovement : MonoBehaviour
             activeDash = true;
             StartCoroutine(Dash());
         }
+        //Animation
+        Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Debug.Log(mousepos);
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            anim.SetBool("IsWalk", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalk", false);
+        }
+        anim.SetFloat("InputX", mousepos.x);
+        anim.SetFloat("InputY", mousepos.y);
     }
 
     private void FixedUpdate()
