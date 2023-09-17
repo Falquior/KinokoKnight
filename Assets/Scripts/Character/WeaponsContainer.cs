@@ -25,7 +25,7 @@ public class WeaponsContainer : MonoBehaviour
     private CrossbowShooter arrowShooter;
 
     [Tooltip("Arrows available to shoot.")]
-    [SerializeField] private int availableArrows = 5;
+    [SerializeField] public int availableArrows = 5;
     [Tooltip("Max amount of arrow that character can store.")]
     [SerializeField] private int arrowsCapacity = 15;
 

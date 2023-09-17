@@ -12,9 +12,9 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     // is the character using the dash?
-    private bool activeDash = false;
+    public bool activeDash = false;
     // Is the dash ready for usage?
-    private bool dashAvailable = true;
+    public bool dashAvailable = true;
     [Tooltip("Speed of the character when the dash is used.")]
     [SerializeField] private float dashSpeed = 1000.0f;
     [Tooltip("Duration in seconds of the dash.")]
