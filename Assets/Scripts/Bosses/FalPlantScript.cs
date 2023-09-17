@@ -108,7 +108,6 @@ public class FalPlantScript : MonoBehaviour
         plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            //colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.2f);
         }
         state = "Attack";
@@ -126,6 +125,7 @@ public class FalPlantScript : MonoBehaviour
         plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(2f);
         state = "Alert";
+        sound.AttackSound();
         plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
@@ -145,6 +145,7 @@ public class FalPlantScript : MonoBehaviour
         plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(1f);
         state = "Alert";
+        sound.AttackSound();
         plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
