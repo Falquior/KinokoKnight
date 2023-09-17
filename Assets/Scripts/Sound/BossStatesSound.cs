@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class BossStatesSound : MonoBehaviour
 {
-    private AudioSource audioSource;
-    private AudioClip attackSound;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -13,8 +12,10 @@ public class PlayerAttack : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void attackSFX()
+    // Update is called once per frame
+    public void AttackSound()
     {
         audioSource.Play();
+        
     }
 }
