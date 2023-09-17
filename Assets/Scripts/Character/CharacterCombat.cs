@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterCombat : MonoBehaviour
 {
     [SerializeField] private WeaponsContainer weaponsContainer;
-
+   
     private Vector2 pointerInput;
 
     public bool swordActive = true;
