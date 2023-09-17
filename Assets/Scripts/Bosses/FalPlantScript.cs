@@ -22,6 +22,7 @@ public class FalPlantScript : MonoBehaviour
     Rigidbody2D plantRB;
     SpriteRenderer colorChange;
     Color origColor;
+    [SerializeField] private GameObject victory;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,11 @@ public class FalPlantScript : MonoBehaviour
             colorChange.color = origColor;
             Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
+        }
+        if(life <= 0)
+        {
+            victory.SetActive(true);
+            Debug.Log("Death Fall plant");
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
