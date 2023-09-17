@@ -8,7 +8,8 @@ public class PlayersLife : MonoBehaviour
     [SerializeField] public GameObject[] lifes;
     public int numLifes;
     public int hits = 0;
-    
+    [SerializeField] private GameOver gameOver;
+
     // Make all life sprites visible.
     public void ActivateLifes()
     {
@@ -17,16 +18,19 @@ public class PlayersLife : MonoBehaviour
         }
     }
 
-    // Hide one life when players get hit and activate game over panel if player die.
+    // Hide one life when player get hit and activate game over panel if player die.
     public void DeActivatedOneLife(int numLife, int hits)
     {
-        lifes[hits-1].SetActive(false);
-        if (numLife == hits) {
+        if (hits -1 >= 0) 
+            lifes[hits-1].SetActive(false);
 
-        //
-        // METHOD FROM UIFuntions to activated GameOver Menu and pause game.
-        // CHARACTER DEATH ANIMATION
-        //
+        if (numLife == hits) 
+        {
+            gameOver.Enable();
+            
+            // METHOD FROM UIFuntions to activated GameOver Menu and pause game.
+            // CHARACTER DEATH ANIMATION
+            //
 
         }
     }
