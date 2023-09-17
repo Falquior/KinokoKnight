@@ -22,9 +22,9 @@ public class FalPlantScript : MonoBehaviour
     Rigidbody2D plantRB;
     SpriteRenderer colorChange;
     Color origColor;
+    [SerializeField] private GameObject victory;
     Animator plantAnim;
 
-    // Sound
     BossStatesSound sound;
 
     // Start is called before the first frame update
@@ -69,7 +69,13 @@ public class FalPlantScript : MonoBehaviour
             Vector2 newPosition = Vector2.MoveTowards(transform.position, origPos, Time.deltaTime * speedb);
             plantRB.MovePosition(newPosition);
         }
+        if(life <= 0)
+        {
+            victory.SetActive(true);
+            Debug.Log("Death Fall plant");
+        }
     }
+
     IEnumerator PhaseCheck()
     {
         if (life <= 50 && life >= 26 && phase == 1)
