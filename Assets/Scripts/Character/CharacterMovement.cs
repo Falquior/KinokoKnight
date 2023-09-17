@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -18,27 +20,33 @@ public class CharacterMovement : MonoBehaviour
     [Tooltip("Duration in seconds of the dash.")]
     [SerializeField] private float dashDuration = 2.0f;
     [Tooltip("Cooldown in seconds of the dash.")]
-    [SerializeField] private float dashCooldown = 10.0f;
+    [SerializeField] private float dashCooldown = 10f;
 
     PlayersLife lifeControl;
     bool charDamagable;
     bool isGettingHit = false;
     SpriteRenderer colorChange;
     Color origColor;
+    Animator anim;
+
+    CinemachineVirtualCamera vcam;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         lifeControl = FindAnyObjectByType<PlayersLife>();
         colorChange = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         origColor = colorChange.color;
+        vcam =  FindAnyObjectByType<CinemachineVirtualCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isGettingHit == false)
         {
-            if(collision.GetType() == typeof(CapsuleCollider2D)){
+            if(collision.GetType() == typeof(CapsuleCollider2D))
+            {
                 if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("PlantBoss"))
                 {
                     if (charDamagable)
@@ -74,6 +82,24 @@ public class CharacterMovement : MonoBehaviour
             activeDash = true;
             StartCoroutine(Dash());
         }
+        //Animation
+        Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            anim.SetBool("IsWalk", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalk", false);
+        }
+        anim.SetFloat("InputX", mousepos.x);
+        anim.SetFloat("InputY", mousepos.y);
+
+        Vector2 mouse2norm = mousepos.normalized;
+        vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f + mouse2norm.x * -0.2f;
+        vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.5f + mouse2norm.y * 0.2f;
+        if(isGettingHit) colorChange.color = new Color( 100 , 0, 0, 0.5f);
+        else if (!activeDash) colorChange.color = origColor;
     }
 
     private void FixedUpdate()

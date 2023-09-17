@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class FalPlantScript : MonoBehaviour
 {
     [Header ("Plant Attributes")]
-    [SerializeField] public int life = 100;
+    [SerializeField] public float life = 100;
     string state = "Rest";
     int phase = 1;
     Vector2 origPos;
@@ -23,11 +23,14 @@ public class FalPlantScript : MonoBehaviour
     SpriteRenderer colorChange;
     Color origColor;
     [SerializeField] private GameObject victory;
+    Animator plantAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         plantRB = GetComponent<Rigidbody2D>();
         colorChange = GetComponent<SpriteRenderer>();
+        plantAnim = GetComponent<Animator>();
         StartCoroutine("EnemyAttack");
         StartCoroutine("PhaseCheck");
         origPos = transform.position;
@@ -67,11 +70,8 @@ public class FalPlantScript : MonoBehaviour
             victory.SetActive(true);
             Debug.Log("Death Fall plant");
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            life = life - 10;
-        }
     }
+
     IEnumerator PhaseCheck()
     {
         if (life <= 50 && life >= 26 && phase == 1)
@@ -96,14 +96,18 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttack()
     {
         state = "CheckPos";
+        plantAnim.speed = 2f;
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(3);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            //colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.2f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(3);
         state = "Return";
         yield return new WaitForSeconds(1.5f);
@@ -113,14 +117,17 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttackBerserk1()
     {
         state = "CheckPos";
+        plantAnim.speed = 4f;
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(2f);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.15f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(2);
         state = "Return";
         yield return new WaitForSeconds(1f);
@@ -129,14 +136,17 @@ public class FalPlantScript : MonoBehaviour
     IEnumerator EnemyAttackBerserk2()
     {
         state = "CheckPos";
+        plantAnim.speed = 6;
+        plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(1f);
         state = "Alert";
+        plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {
-            colorChange.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             yield return new WaitForSeconds(0.1f);
         }
         state = "Attack";
+        plantAnim.SetInteger("PlantStatus", 2);
         yield return new WaitForSeconds(1.5f);
         state = "Return";
         yield return new WaitForSeconds(0.75f);
