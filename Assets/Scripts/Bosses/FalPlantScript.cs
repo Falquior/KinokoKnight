@@ -8,7 +8,7 @@ public class FalPlantScript : MonoBehaviour
 {
     [Header ("Plant Attributes")]
     [SerializeField] public float life = 100;
-    string state = "Rest";
+    public string state = "Rest";
     int phase = 1;
     Vector2 origPos;
     [Header("Plant Attack Settings")]
@@ -25,6 +25,8 @@ public class FalPlantScript : MonoBehaviour
     [SerializeField] private GameObject victory;
     Animator plantAnim;
 
+    BossStatesSound sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,8 @@ public class FalPlantScript : MonoBehaviour
         StartCoroutine("PhaseCheck");
         origPos = transform.position;
         origColor = colorChange.color;
+
+        sound = FindAnyObjectByType<BossStatesSound>();
     }
 
     // Update is called once per frame
@@ -100,6 +104,7 @@ public class FalPlantScript : MonoBehaviour
         plantAnim.SetInteger("PlantStatus", 0);
         yield return new WaitForSeconds(3);
         state = "Alert";
+        sound.AttackSound();
         plantAnim.SetInteger("PlantStatus", 1);
         for (int i = 0; i < 5; i++)
         {

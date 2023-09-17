@@ -29,11 +29,20 @@ public class WeaponsContainer : MonoBehaviour
     [Tooltip("Max amount of arrow that character can store.")]
     [SerializeField] private int arrowsCapacity = 15;
 
+    // Sound 
+    PlayerAttack soundSword;
+    PlayerAttack soundCrossbow;
+
+    [SerializeField] GameObject sword, crossbow;
+
     private void Start()
     {
         SetCrossbowVisibility(false);
         SetSwordVisibility(true);
         arrowShooter = GetComponentInChildren<CrossbowShooter>();
+
+        soundSword = sword.GetComponent<PlayerAttack>();
+        soundCrossbow = crossbow.GetComponent<PlayerAttack>();
     }
 
     private void Update()
@@ -83,6 +92,7 @@ public class WeaponsContainer : MonoBehaviour
         {
             swordAnimator.SetTrigger("Attack");
             attackBlocked = true;
+            soundSword.attackSFX();
             StartCoroutine(DelayAttack());
         }
     }
@@ -101,6 +111,7 @@ public class WeaponsContainer : MonoBehaviour
             availableArrows--;
             Debug.Log($"You have {availableArrows} available arrows.");
             distanceAttackBlocked = true;
+            soundCrossbow.attackSFX();
             if (availableArrows > 0)
                 StartCoroutine(DelayDistanceAttack());
             else
