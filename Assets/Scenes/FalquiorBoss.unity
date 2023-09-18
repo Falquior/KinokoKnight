@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &179360752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8576364738012918816, guid: a0030a1defb34a5499917961720f1493, type: 3}
+  m_PrefabInstance: {fileID: 257547313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &257547313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,6 +244,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6965828841854539314}
+    - target: {fileID: 7789393539468681441, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: bossLifeBar
+      value: 
+      objectReference: {fileID: 179360752}
+    - target: {fileID: 7789393539468681441, guid: a0030a1defb34a5499917961720f1493, type: 3}
+      propertyPath: characterLifeBar
+      value: 
+      objectReference: {fileID: 1858435714}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1148,6 +1161,11 @@ SortingGroup:
 --- !u!1 &1790420653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8768424695765034296, guid: a0030a1defb34a5499917961720f1493, type: 3}
+  m_PrefabInstance: {fileID: 257547313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1858435714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1148075617541486960, guid: a0030a1defb34a5499917961720f1493, type: 3}
   m_PrefabInstance: {fileID: 257547313}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2041042679

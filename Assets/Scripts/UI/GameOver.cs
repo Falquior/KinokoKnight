@@ -10,7 +10,8 @@ public class GameOver : MonoBehaviour
 
     private string mainMenuName = "MainMenu";
     [Tooltip("Health bar of the boss in the scene GameObject.")]
-    [SerializeField] private GameObject BossLifeBar;
+    [SerializeField] private GameObject bossLifeBar;
+    [SerializeField] private GameObject characterLifeBar;
 
     public void OpenMainMenu()
     {
@@ -32,7 +33,9 @@ public class GameOver : MonoBehaviour
 
     private void OnEnable()
     {
-        if (BossLifeBar != null)
-            BossLifeBar.SetActive(false);
+        if (bossLifeBar != null)
+            bossLifeBar.SetActive(false);
+        if (characterLifeBar != null)
+            characterLifeBar.SetActive(false);
     }
 }
