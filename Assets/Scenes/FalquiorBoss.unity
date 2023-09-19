@@ -376,6 +376,8 @@ MonoBehaviour:
   state: Rest
   target: {fileID: 2815100611763704459}
   victory: {fileID: 1790420653}
+  leftFlower: {fileID: 1030962477}
+  rightFlower: {fileID: 1694315137}
 --- !u!50 &434897678
 Rigidbody2D:
   serializedVersion: 4

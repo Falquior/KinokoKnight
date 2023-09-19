@@ -26,6 +26,8 @@ public class FalPlantScript : MonoBehaviour
     Animator plantAnim;
 
     BossStatesSound sound;
+    [SerializeField] private GameObject leftFlower;
+    [SerializeField] private GameObject rightFlower;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,8 @@ public class FalPlantScript : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
             transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
         }
-        
+        if (Input.GetKeyDown(KeyCode.P))
+            life = life - 10;
     }
 
     private void FixedUpdate()
@@ -71,8 +74,12 @@ public class FalPlantScript : MonoBehaviour
         }
         if(life <= 0)
         {
+            if(leftFlower != null)
+                GameObject.Destroy(leftFlower);
+            if(rightFlower != null)
+                GameObject.Destroy(rightFlower);
             victory.SetActive(true);
-            Debug.Log("Death Fall plant");
+            GameObject.Destroy(gameObject);
         }
     }
 

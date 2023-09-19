@@ -122,13 +122,10 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        Debug.Log("Dash start");
         yield return new WaitForSeconds(dashDuration);
         activeDash = false;
-        Debug.Log("Dash end, cooldown");
         yield return new WaitForSeconds(dashCooldown);
         dashAvailable = true;
-        Debug.Log("Dash restored");
     }
 
 }
