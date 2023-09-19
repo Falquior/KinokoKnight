@@ -14,6 +14,7 @@ public class UIFuntions : MonoBehaviour
     [SerializeField] string sceneName;
 
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject optionsMenu;
     public static bool GameIsPause = false;
 
     CharacterCombat charActive;
@@ -49,6 +50,7 @@ public class UIFuntions : MonoBehaviour
     {
         charActive.swordActive = true;
         pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPause = false;
     } 
