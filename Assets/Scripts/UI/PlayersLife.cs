@@ -30,8 +30,6 @@ public class PlayersLife : MonoBehaviour
             
             // METHOD FROM UIFuntions to activated GameOver Menu and pause game.
             // CHARACTER DEATH ANIMATION
-            //
-
         }
     }
 

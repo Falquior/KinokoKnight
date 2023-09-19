@@ -109,14 +109,12 @@ public class WeaponsContainer : MonoBehaviour
         {
             arrowShooter.ShootArrow();
             availableArrows--;
-            Debug.Log($"You have {availableArrows} available arrows.");
             distanceAttackBlocked = true;
             soundCrossbow.attackSFX();
             if (availableArrows > 0)
                 StartCoroutine(DelayDistanceAttack());
             else
             {
-                Debug.Log("reloading...");
                 StartCoroutine(Reload());
             }
         }
